@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# Keep renamed folders
+!ICP-Coding/
+!ICP-Coding/**
+!ICP-WEBdev/
+!ICP-WEBdev/**
+coding/
+icpProject/
+coding/
+icpProject/
