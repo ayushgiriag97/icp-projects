@@ -1,0 +1,15 @@
+Metformin 500mg, Zenith Pharma, 750, 6.0, 55.0, 10
+Amlodipine 5mg, NovaMed, 500, 4.5, 40.0, 12
+Ciprofloxacin 500mg, BioCure, 650, 14.0, 125.0, 10
+Diclofenac 50mg, CarePlus, 700, 5.0, 45.0, 10
+Omeprazole 20mg, LifeMed, 800, 6.5, 58.0, 15
+Dolo 650mg, SunCare, 1200, 3.5, 30.0, 10
+Levocetirizine 5mg, MediTrust, 900, 4.0, 36.0, 10
+Cough Syrup 100ml, HerbalAid, 400, 25.0, 210.0, 6
+Calcium Tablets, NutriLife, 1000, 5.5, 48.0, 12
+Zincovit Syrup, VitaHealth, 300, 30.0, 260.0, 8
+Rabeprazole 20mg, CureWell, 550, 8.0, 72.0, 10
+Montelukast 10mg, AirFlow Pharma, 650, 9.0, 85.0, 10
+Doxycycline 100mg, PrimeMed, 500, 11.0, 100.0, 10
+Saline Nasal Spray, FreshAir, 250, 40.0, 350.0, 5
+Antacid Gel 170ml, GastroCare, 450, 18.0, 160.0, 6

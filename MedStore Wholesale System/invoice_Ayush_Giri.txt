@@ -1,0 +1,11 @@
+============================
+   MEDSTORE PVT. LTD.
+   SALES INVOICE
+============================
+Customer : Ayush Giri
+----------------------------
+Paracetamol 500mg | Strip(s) x50 | Rate: Rs.45.0 | Discount: Rs.112.5 | Subtotal: Rs.2137.5
+Pantoprazole 40mg | Strip(s) x30 | Rate: Rs.60.0 | Discount: Rs.90.0 | Subtotal: Rs.1710.0
+----------------------------
+TOTAL : Rs.3847.5
+============================
