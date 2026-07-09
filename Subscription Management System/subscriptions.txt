@@ -1,0 +1,8 @@
+=== Index: 0 ===
+Model Name: GPT-Lite
+Price (per 1 Lakh tokens): NPR 9.99
+Parameter Count: 20 billion
+Context Window: 16000
+Plan Type: Personal Plan
+Prompts Remaining (Monthly Quota): 10
+
