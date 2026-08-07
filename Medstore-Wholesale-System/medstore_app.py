@@ -3,6 +3,8 @@
 # =============================================
 
 import os
+import difflib
+import re
 from medicine import Medicine
 from file_manager import FileManager
 from invoice_generator import InvoiceGenerator
@@ -170,83 +172,208 @@ class MedStoreApp:
         try:
             print("\n===== RESTOCK MEDICINE =====")
             supplier = input("Supplier name: ").strip()
-            if supplier == "":
-                print("[Error] Supplier name cannot be empty.")
-                return
-            if not all(ch.isalpha() or ch.isspace() for ch in supplier):
-                print("[Error] Supplier name must contain only letters.")
+
+            # Validate supplier name
+            if not supplier or not all(ch.isalpha() or ch.isspace() for ch in supplier):
+                print("[Error] Supplier name must contain only letters and cannot be empty.")
                 return
 
-            total      = 0.0
-            note_lines = []
+            total = 0.0
+            total_discount = 0.0
+            note_lines = [] 
 
             while True:
+                # Show inventory
                 self.show_inventory(self.medicines)
-                choice = self.get_int("Enter medicine number to restock (0 to finish): ")
-                if choice == 0:
+
+                # Low stock alerts
+                low_stock_found = False
+                for m in self.medicines:
+                    if m.qty <= 50:  # threshold
+                        if not low_stock_found:
+                            print("\n[Low Stock Alerts]")
+                        print(f" - {m.name} ({m.brand}) has only {m.qty} tablets left. Consider restocking.")
+                        low_stock_found = True
+
+                if not low_stock_found:
+                    print("\n[Low Stock Alerts] None at the moment.")
+
+
+                # Exit option
+                exit_number = len(self.medicines) + 1
+                print(f"{exit_number}. Exit Restock Medicine")
+
+                choice = input("Enter medicine number (or type 'exit'): ").strip().lower()
+
+                # Exit conditions
+                if choice == "exit" or choice == str(exit_number):
                     break
+
+                if not choice.isdigit():
+                    print("Invalid input. Enter a valid number or 'exit'.")
+                    continue
+
+                choice = int(choice)
                 if choice < 1 or choice > len(self.medicines):
-                    print("[Error] Invalid number. Try again.")
+                    print("Invalid choice. Try again.")
                     continue
 
                 m = self.medicines[choice - 1]
 
+                # Unit validation
                 unit = input("Restock by (T)ablet or (S)trip? ").strip().upper()
                 if unit not in ["T", "S"]:
-                    print("[Error] Enter T or S only.")
+                    print("Invalid unit. Enter T or S only.")
                     continue
 
                 qty = self.get_int("Quantity: ")
-                if qty == 0:
-                    print("[Error] Quantity must be at least 1.")
+                if qty <= 0:
+                    print("Quantity must be at least 1.")
                     continue
 
+                # Pricing logic
                 if unit == "T":
                     tabs_added = qty
-                    rate       = m.rate_tablet
-                    unit_name  = "Tablet(s)"
+                    rate = m.rate_tablet
+                    unit_name = "Tablet(s)"
                 else:
                     tabs_added = qty * m.tabs_per_strip
-                    rate       = m.rate_strip
-                    unit_name  = "Strip(s)"
+                    rate = m.rate_strip
+                    unit_name = "Strip(s)"
 
-                subtotal  = rate * qty
-                m.qty    += tabs_added
-                total    += subtotal
+                subtotal = rate * qty
+                discount = 0.0
 
-                line = (m.name + " | " + unit_name + " x" + str(qty) +
-                        " | Rate: Rs." + str(rate) +
-                        " | Subtotal: Rs." + str(round(subtotal, 2)))
+                # Restock bulk discount
+                if tabs_added >= 1000:
+                    discount = round(subtotal * 0.10, 2)  # 10% discount
+                    subtotal -= discount
+
+                # Update inventory
+                m.qty += tabs_added
+                total += subtotal
+                total_discount += discount
+
+                line = f"{m.name} | {unit_name} x{qty} | Rate: Rs.{rate} | Discount: Rs.{discount} | Subtotal: Rs.{round(subtotal,2)}"
                 note_lines.append(line)
-                print("Restocked: " + line)
+                print("Restocked:", line)
+
+                # Restock summary
+                print("\nRestock Summary:")
+                for item in note_lines:
+                    print(" -", item)
+                print(f"Total restock value so far: Rs.{round(total,2)}")
+                print(f"Supplier discount applied so far: Rs.{round(total_discount,2)}\n")
 
             if not note_lines:
                 print("No items restocked.")
                 return
 
-            note_content  = self.invoice_gen.make_restock_note(supplier, note_lines, total)
+            # Generate restock note
+            note_content = self.invoice_gen.make_restock_note(supplier, note_lines, total)
             note_filename = self.invoice_gen.unique_name("restock", supplier)
 
             self.file_mgr.write_file(note_filename, note_content)
             self.file_mgr.save_inventory(self.medicines)
 
-            print("Restock note saved as: " + note_filename)
-            print("Total: Rs." + str(round(total, 2)))
+            print("Restock note saved as:", note_filename)
+            print("Final Total Restock Value: Rs.", round(total, 2))
+            print("Total Supplier Discount Applied: Rs.", round(total_discount, 2))
 
         except Exception as e:
-            print("[Error] Restock process failed:", e)
+            print(f"[Error] Restock process failed: {str(e)}")
+
 
     # ---------- Search medicine ----------
     def search(self):
         try:
-            keyword = input("Enter medicine name to search: ").strip().lower()
-            found = [m for m in self.medicines if keyword in m.name.lower()]
-            if not found:
-                print("No medicine found with that name.")
+            # Edge case: empty inventory
+            if not self.medicines:
+                print("[Error] Inventory is empty. Please add medicines first.")
+                return
+
+            keyword = input("Enter search (name/brand or filter): ").strip().lower()
+
+            # Input validation
+            if not keyword:
+                print("[Error] Search keyword cannot be empty.")
+                return
+            if len(keyword) < 2 and not any(op in keyword for op in ["<", ">", "rate", "stock"]):
+                print("[Error] Please enter at least 2 characters for search.")
+                return
+
+            found = []
+
+            # --- Advanced filters ---
+            stock_match = re.match(r"stock\s*([<>]=?)\s*(\d+)", keyword)
+            rate_match = re.match(r"rate\s*([<>]=?)\s*(\d+)", keyword)
+
+            if stock_match:
+                op, val = stock_match.groups()
+                val = int(val)
+                if op == "<":
+                    found = [m for m in self.medicines if m.qty < val]
+                elif op == "<=":
+                    found = [m for m in self.medicines if m.qty <= val]
+                elif op == ">":
+                    found = [m for m in self.medicines if m.qty > val]
+                elif op == ">=":
+                    found = [m for m in self.medicines if m.qty >= val]
+
+            elif rate_match:
+                op, val = rate_match.groups()
+                val = float(val)
+                if op == "<":
+                    found = [m for m in self.medicines if m.rate_tablet < val]
+                elif op == "<=":
+                    found = [m for m in self.medicines if m.rate_tablet <= val]
+                elif op == ">":
+                    found = [m for m in self.medicines if m.rate_tablet > val]
+                elif op == ">=":
+                    found = [m for m in self.medicines if m.rate_tablet >= val]
+
             else:
-                self.show_inventory(found)
+                # --- Normal search by name/brand ---
+                found = [m for m in self.medicines if keyword in m.name.lower() or keyword in m.brand.lower()]
+
+                # Fuzzy matches if nothing found
+                if not found:
+                    names = [m.name for m in self.medicines]
+                    brands = [m.brand for m in self.medicines]
+                    close_matches = difflib.get_close_matches(keyword, names + brands, cutoff=0.6)
+                    if close_matches:
+                        found = [m for m in self.medicines if m.name in close_matches or m.brand in close_matches]
+
+            # --- Sorting options ---
+            if keyword in ["rate asc", "rate low", "rate min"]:
+                found = sorted(self.medicines, key=lambda m: m.rate_tablet)
+            elif keyword in ["rate desc", "rate high", "rate max"]:
+                found = sorted(self.medicines, key=lambda m: m.rate_tablet, reverse=True)
+            elif keyword in ["stock asc", "stock low", "stock min"]:
+                found = sorted(self.medicines, key=lambda m: m.qty)
+            elif keyword in ["stock desc", "stock high", "stock max"]:
+                found = sorted(self.medicines, key=lambda m: m.qty, reverse=True)
+
+            # --- Results handling ---
+            if not found:
+                print(f"No medicine found matching '{keyword}'.")
+            else:
+                print(f"Found {len(found)} medicine(s) matching '{keyword}':")
+                for m in found:
+                    name, brand = m.name, m.brand
+
+                    # Highlight matches
+                    if keyword in name.lower():
+                        idx = name.lower().find(keyword)
+                        name = name[:idx] + "[" + name[idx:idx+len(keyword)] + "]" + name[idx+len(keyword):]
+                    if keyword in brand.lower():
+                        idx = brand.lower().find(keyword)
+                        brand = brand[:idx] + "[" + brand[idx:idx+len(keyword)] + "]" + brand[idx+len(keyword):]
+
+                    print(f"- {name} | {brand} | Stock: {m.qty} | Rate: Rs.{m.rate_tablet} | Strip Rate: Rs.{m.rate_strip}")
+
         except Exception as e:
-            print("[Error] Search failed:", e)
+            print(f"[Error] Search failed: {str(e)}")
 
     # ---------- Add new medicine ----------
     def add_medicine(self):
