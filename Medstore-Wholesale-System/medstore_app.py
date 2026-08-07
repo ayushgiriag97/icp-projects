@@ -51,83 +51,119 @@ class MedStoreApp:
         try:
             print("\n===== SELL MEDICINE =====")
             customer = input("Customer name: ").strip()
-            if customer == "":
-                print("[Error] Customer name cannot be empty.")
-                return
-            if not all(ch.isalpha() or ch.isspace() for ch in customer):
-                print("[Error] Customer name must contain only letters.")
+
+            # Validate customer name
+            if not customer or not all(ch.isalpha() or ch.isspace() for ch in customer):
+                print("[Error] Customer name must contain only letters and cannot be empty.")
                 return
 
             total = 0.0
+            total_discount = 0.0
             invoice_lines = []
 
-
             while True:
+                # Show inventory with exit option
                 self.show_inventory(self.medicines)
-                choice = self.get_int("Enter medicine number to sell (0 to finish): ")
-                if choice == 0:
+                exit_number = len(self.medicines) + 1
+                print(f"{exit_number}. Exit Sell Medicine")
+
+                choice = input("Enter medicine number (or type 'exit'): ").strip().lower()
+                # Exit conditions
+                if choice == "exit" or choice == str(exit_number):
                     break
+
+                if not choice.isdigit():
+                    print("Invalid input. Enter a number or 'exit'.")
+                    continue
+
+                choice = int(choice)
                 if choice < 1 or choice > len(self.medicines):
-                    print("[Error] Invalid number. Try again.")
+                    print("Invalid choice. Try again.")
                     continue
 
                 m = self.medicines[choice - 1]
 
+                # Unit validation
                 unit = input("Sell by (T)ablet or (S)trip? ").strip().upper()
                 if unit not in ["T", "S"]:
-                    print("[Error] Enter T or S only.")
+                    print("Invalid unit. Enter T or S only.")
                     continue
 
                 qty = self.get_int("Quantity: ")
-                if qty == 0:
-                    print("[Error] Quantity must be at least 1.")
+                if qty <= 0:
+                    print("Quantity must be at least 1.")
                     continue
 
+                # Pricing logic
                 if unit == "T":
                     tabs_needed = qty
-                    rate        = m.rate_tablet
-                    unit_name   = "Tablet(s)"
+                    rate = m.rate_tablet
+                    unit_name = "Tablet(s)"
                 else:
                     tabs_needed = qty * m.tabs_per_strip
-                    rate        = m.rate_strip
-                    unit_name   = "Strip(s)"
+                    rate = m.rate_strip
+                    unit_name = "Strip(s)"
 
+                # Stock validation
                 if tabs_needed > m.qty:
-                    print("[Error] Not enough stock. Available: " + str(m.qty) + " tablets.")
+                    print(f"Only {m.qty} tablets left. Try again.")
                     continue
 
-                subtotal = rate * qty
+                #discount logic
                 discount = 0.0
 
-                if unit == "S" and qty >= 2:
-                    discount = subtotal * 0.05
-                    subtotal -= discount
+                subtotal = rate * qty
 
-                m.qty  -= tabs_needed
+                if unit == "T":
+                    if qty >= 50 and qty < 100:
+                        discount = round(subtotal * 0.02, 2)   # 2% discount
+                    elif qty >= 100:
+                        discount = round(subtotal * 0.05, 2)   # 5% discount
+
+                elif unit == "S":
+                    if qty >= 2 and qty < 5:
+                        discount = round(subtotal * 0.05, 2)   # 5% discount
+                    elif qty >= 5:
+                        discount = round(subtotal * 0.10, 2)   # 10% discount
+
+                subtotal -= discount
+
+
+                # Update inventory and totals
+                m.qty -= tabs_needed
                 total += subtotal
+                total_discount += discount
 
-                line = (m.name + " | " + unit_name + " x" + str(qty) +
-                        " | Rate: Rs." + str(rate) +
-                        " | Discount: Rs." + str(round(discount, 2)) +
-                        " | Subtotal: Rs." + str(round(subtotal, 2)))
+                line = f"{m.name} | {unit_name} x{qty} | Rate: Rs.{rate} | Discount: Rs.{discount} | Subtotal: Rs.{round(subtotal,2)}"
                 invoice_lines.append(line)
-                print("Added to cart: " + line)
+                print("Added to cart:", line)
+
+                # Cart preview
+                print("\nYour Medicine Cart:")
+                for item in invoice_lines:
+                    print(" -", item)
+                print(f"Total so far: Rs.{round(total,2)}")
+                print(f"Discount received so far: Rs.{round(total_discount,2)}")
+                print(f"Net total so far: Rs.{round(total,2)}\n")
 
             if not invoice_lines:
                 print("No items sold.")
                 return
 
-            invoice_content  = self.invoice_gen.make_sale_invoice(customer, invoice_lines, total)
+            # Generate invoice
+            invoice_content = self.invoice_gen.make_sale_invoice(customer, invoice_lines, total)
             invoice_filename = self.invoice_gen.unique_name("invoice", customer)
 
             self.file_mgr.write_file(invoice_filename, invoice_content)
             self.file_mgr.save_inventory(self.medicines)
 
-            print("Invoice saved as: " + invoice_filename)
-            print("Total: Rs." + str(round(total, 2)))
+            print("Invoice saved as:", invoice_filename)
+            print("Final Total: Rs.", round(total, 2))
+            print("Total Discount Applied: Rs.", round(total_discount, 2))
 
         except Exception as e:
-            print("[Error] Sell process failed:", e)
+            print(f"[Error] Sell process failed: {str(e)}")
+
 
     # ---------- Restock medicines ----------
     def restock(self):
