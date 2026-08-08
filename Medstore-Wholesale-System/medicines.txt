@@ -1,15 +1,16 @@
-Metformin 500mg, Zenith Pharma, 750, 6.0, 55.0, 10
-Amlodipine 5mg, NovaMed, 500, 4.5, 40.0, 12
-Ciprofloxacin 500mg, BioCure, 650, 14.0, 125.0, 10
-Diclofenac 50mg, CarePlus, 700, 5.0, 45.0, 10
-Omeprazole 20mg, LifeMed, 800, 6.5, 58.0, 15
-Dolo 650mg, SunCare, 1200, 3.5, 30.0, 10
-Levocetirizine 5mg, MediTrust, 900, 4.0, 36.0, 10
-Cough Syrup 100ml, HerbalAid, 400, 25.0, 210.0, 6
-Calcium Tablets, NutriLife, 1000, 5.5, 48.0, 12
-Zincovit Syrup, VitaHealth, 300, 30.0, 260.0, 8
-Rabeprazole 20mg, CureWell, 550, 8.0, 72.0, 10
-Montelukast 10mg, AirFlow Pharma, 650, 9.0, 85.0, 10
-Doxycycline 100mg, PrimeMed, 500, 11.0, 100.0, 10
-Saline Nasal Spray, FreshAir, 250, 40.0, 350.0, 5
-Antacid Gel 170ml, GastroCare, 450, 18.0, 160.0, 6
+Metformin 500mg, Zenith Pharma, 750, 6.0, 55.0, 10, B001, 2027-12-31, 5.0, yes
+Amlodipine 5mg, NovaMed, 500, 4.5, 40.0, 12, B002, 2027-11-30, 3.5, yes
+Ciprofloxacin 500mg, BioCure, 650, 14.0, 125.0, 10, B003, 2027-10-15, 12.0, yes
+Diclofenac 50mg, CarePlus, 700, 5.0, 45.0, 10, B004, 2027-09-30, 4.0, yes
+Omeprazole 20mg, LifeMed, 800, 6.5, 58.0, 15, B005, 2028-01-31, 5.5, yes
+Dolo 650mg, SunCare, 1080, 3.5, 30.0, 10, B006, 2027-12-31, 2.5, yes
+Levocetirizine 5mg, MediTrust, 900, 4.0, 36.0, 10, B007, 2027-08-31, 3.0, yes
+Cough Syrup 100ml, HerbalAid, 400, 25.0, 210.0, 6, B008, 2027-09-15, 20.0, no
+Calcium Tablets, NutriLife, 700, 5.5, 48.0, 12, B009, 2028-02-28, 4.5, no
+Zincovit Syrup, VitaHealth, 300, 30.0, 260.0, 8, B010, 2027-11-15, 25.0, no
+Rabeprazole 20mg, CureWell, 550, 8.0, 72.0, 10, B011, 2027-10-31, 7.0, yes
+Montelukast 10mg, AirFlow Pharma, 650, 9.0, 85.0, 10, B012, 2027-12-15, 8.0, yes
+Doxycycline 100mg, PrimeMed, 500, 11.0, 100.0, 10, B013, 2027-09-30, 9.0, yes
+Saline Nasal Spray, FreshAir, 200, 40.0, 350.0, 5, B014, 2027-08-31, 35.0, no
+Antacid Gel 170ml, GastroCare, 450, 18.0, 160.0, 6, B015, 2027-10-31, 15.0, no
+
