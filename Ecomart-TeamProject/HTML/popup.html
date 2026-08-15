@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Product - EcoMart</title>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup-demo">
+    <button type="button" id="buyBtn" class="btn btn-primary">Buy Now</button>
+
+    <div class="popup-overlay" id="popup" hidden>
+      <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <button type="button" class="popup-close" id="closeBtn" aria-label="Close dialog">&times;</button>
+        <h2 id="popup-title">Buy Product</h2>
+        <form id="buy-form">
+          <div class="form-group">
+            <label for="buy-name" class="visually-hidden">Name</label>
+            <input type="text" id="buy-name" name="name" placeholder="Name" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="buy-email" class="visually-hidden">Email</label>
+            <input type="email" id="buy-email" name="email" placeholder="Email" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="buy-password" class="visually-hidden">Password</label>
+            <input type="password" id="buy-password" name="password" placeholder="Password" autocomplete="new-password" required minlength="8">
+          </div>
+          <div class="form-group">
+            <label for="buy-confirm" class="visually-hidden">Confirm Password</label>
+            <input type="password" id="buy-confirm" name="confirm" placeholder="Confirm Password" autocomplete="new-password" required minlength="8">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/popup.js" defer></script>
+</body>
+</html>

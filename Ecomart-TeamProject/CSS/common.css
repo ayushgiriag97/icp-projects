@@ -1,0 +1,252 @@
+/* =========================================================
+   EcoMart — common.css
+   Shared design system loaded on every page: reset, design
+   tokens, header/nav, footer, buttons, cards, forms, badges,
+   ratings, and layout utilities. Page files only add the
+   markup that is unique to that page.
+   ========================================================= */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+ul { list-style: none; }
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Colors */
+  --color-primary: #2d6d4e;
+  --color-primary-dark: #245a40;
+  --color-primary-darker: #27684a;
+  --color-accent: #ff6b35;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f5f1e8;
+  --color-bg-tint: rgba(211, 222, 211, 0.5);
+  --color-bg-alt: #d4e5dc;
+  --color-text: #2b2b2b;
+  --color-text-muted: #666666;
+  --color-text-soft: #999999;
+  --color-border: #e5e0d5;
+  --color-footer-bg: #2b2b2b;
+  --color-footer-text: #b8b8b8;
+  --color-footer-border: #444444;
+  --color-white: #ffffff;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+
+  /* Layout */
+  --max-width: 1280px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 15px;
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  /* Type */
+  --font-base: Arial, Helvetica, sans-serif;
+  --font-display: "DM Sans", Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; }
+h1, h2, h3, h4 { line-height: 1.25; }
+
+/* ---------- Layout utilities ---------- */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Site header / navigation ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--color-bg-soft);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+img.logo-icon { background: none; }
+.logo-text { font-size: 28px; font-weight: bold; color: var(--color-text); }
+
+.site-nav { display: flex; gap: 35px; flex-wrap: wrap; }
+.site-nav a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { color: var(--color-primary); }
+.site-nav a[aria-current="page"] {
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 5px;
+}
+
+.cart { position: relative; }
+.cart-icon {
+  width: 40px; height: 40px;
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-badge {
+  position: absolute; top: -8px; right: -8px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 50%;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: bold;
+}
+
+/* ---------- Page hero (About / Products / Blog / Research) ---------- */
+.page-hero {
+  padding-block: var(--space-xl);
+  background-color: var(--color-bg-tint);
+}
+.page-hero .container { max-width: 672px; margin: 0; padding-left: 32px; padding-right: 32px; margin-left: 111.6px; }
+.page-hero h1 { font-size: 2.5rem; margin-bottom: var(--space-sm); }
+.page-hero p { font-size: 1.1rem; color: var(--color-text-muted); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-primary { background-color: var(--color-primary); color: var(--color-white); }
+.btn-primary:hover { background-color: var(--color-primary-dark); transform: translateY(-2px); }
+.btn-secondary { background-color: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+.btn-secondary:hover { background-color: var(--color-primary); color: var(--color-white); }
+.btn-block { width: 100%; }
+
+/* ---------- Cards ---------- */
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  position: absolute;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+.badge-best { background-color: var(--color-primary); top: 12px; left: 12px; }
+.badge-eco { background-color: var(--color-primary); top: 12px; left: 12px; }
+.badge-discount { background-color: var(--color-accent); top: 12px; right: 12px; }
+
+/* ---------- Rating stars ----------
+   One accessible, reusable rating component instead of a
+   hand-drawn <svg> star repeated for every product card. */
+.rating { display: flex; align-items: center; gap: 6px; }
+.rating-stars { color: var(--color-accent); letter-spacing: 2px; font-size: 15px; }
+.rating-count { color: var(--color-text-soft); font-size: 14px; }
+
+/* ---------- Forms ---------- */
+.form-group { margin-bottom: var(--space-sm); }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 600; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+}
+.form-group textarea { min-height: 140px; resize: vertical; }
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* ---------- Site footer ---------- */
+.site-footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 50px 20px 30px;
+  margin-top: auto;
+}
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--color-footer-border);
+  flex-wrap: wrap;
+}
+.footer-about { flex: 1; max-width: 400px; }
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: var(--space-sm); }
+.footer-logo .logo-text { color: var(--color-white); }
+.footer-about p { line-height: 1.8; font-size: 15px; }
+.footer-contact { flex: 1; max-width: 350px; }
+.footer-contact h3 { color: var(--color-white); font-size: 22px; margin-bottom: var(--space-md); }
+.contact-item { display: flex; align-items: start; gap: 15px; margin-bottom: var(--space-sm); }
+.contact-item a { color: var(--color-footer-text); text-decoration: none; }
+.contact-item a:hover { color: var(--color-white); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 25px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .site-header { padding: 16px 20px; }
+  .site-nav { gap: 18px; order: 3; width: 100%; justify-content: center; }
+  .page-hero .container { margin-left: auto; margin-right: auto; }
+  .footer-content { flex-direction: column; }
+}

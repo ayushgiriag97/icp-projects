@@ -1,0 +1,13 @@
+============================
+   MEDSTORE PVT. LTD.
+   SALES INVOICE
+============================
+Invoice ID : 445f8c7a
+Date       : 07-Aug-2026 20:49
+Customer   : Ayush
+----------------------------
+Calcium Tablets     Tablet(s) x300      Rate: Rs.5.5        Discount: Rs.82.5   Subtotal: Rs.1567.5 
+Dolo 650mg          Strip(s) x12        Rate: Rs.30.0       Discount: Rs.36.0   Subtotal: Rs.324.0  
+----------------------------
+TOTAL : Rs.1891.5
+============================

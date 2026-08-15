@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products - EcoMart</title>
+  <link rel="stylesheet" href="../CSS/common.css">
+  <link rel="stylesheet" href="../CSS/product.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img class="logo-icon" src="../images/logo.png" alt="" width="50" height="50">
+      <span class="logo-text">EcoMart</span>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="product.html" aria-current="page">Products</a>
+      <a href="blog.html">Blog</a>
+      <a href="research.html">Research</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="cart" href="#" aria-label="View cart, 3 items">
+      <span class="cart-icon" aria-hidden="true">
+        <img src="../images/cart.png" alt="" width="22" height="22">
+      </span>
+      <span class="cart-badge">3</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Our Products</h1>
+        <p>Browse our collection of sustainable, eco-friendly products designed for conscious consumers who care about the planet.</p>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <div class="container products-layout">
+        <aside class="filters-panel" aria-label="Product filters">
+          <div class="search-box">
+            <label for="product-search" class="visually-hidden">Search products</label>
+            <input type="search" id="product-search" placeholder="Search products...">
+          </div>
+
+          <div class="categories-box">
+            <h3>Categories</h3>
+            <ul class="category-list">
+            <li>
+              <button type="button" class="category-button">
+                <span class="category-label">All Products</span>
+                <span class="category-count">(12)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="category-button">
+                <span class="category-label">Bamboo Products</span>
+                <span class="category-count">(2)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="category-button">
+                <span class="category-label">Kitchen</span>
+                <span class="category-count">(4)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="category-button">
+                <span class="category-label">Personal Care</span>
+                <span class="category-count">(2)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="category-button">
+                <span class="category-label">Bags</span>
+                <span class="category-count">(2)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="category-button">
+                <span class="category-label">Outdoor</span>
+                <span class="category-count">(2)</span>
+              </button>
+            </li>
+            </ul>
+          </div>
+
+          <div class="sort-box">
+            <label for="sort-by">Sort By</label>
+            <select id="sort-by">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+            </select>
+          </div>
+        </aside>
+
+        <div class="products-panel">
+          <p class="results-count">Showing <span>12</span> products</p>
+          <ul class="product-grid">
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://i.pinimg.com/736x/71/fa/80/71fa805b1569fff9694ad03d545fb02e.jpg" alt="Bamboo Water Bottle" loading="lazy">
+              <span class="badge badge-best">Best Seller</span>
+              <span class="badge badge-discount">-25%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Bamboo Products</p>
+              <h3 class="product-name">Bamboo Water Bottle</h3>
+              <p class="product-desc">Stay hydrated sustainably with our insulated bamboo water bottle. Keeps drinks cold for 24 hours or hot for 12 hours.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(234)</span></div>
+              <p class="product-price"><span class="price-now">$39.99</span> <span class="price-old">$29.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://totebagfactory.com/cdn/shop/files/canvas-tote-bags-collection.jpg?v=1730234916&width=345" alt="Tote Bag" loading="lazy">
+              <span class="badge badge-best">Eco Choice</span>
+              <span class="badge badge-discount">-20%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Bags</p>
+              <h3 class="product-name">Organic Cotton Tote Bag</h3>
+              <p class="product-desc">Durable, stylish, and 100% organic cotton. Perfect for groceries, beach trips, or everyday use.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(189)</span></div>
+              <p class="product-price"><span class="price-now">$24.99</span> <span class="price-old">$19.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://www.beeswrap.com/cdn/shop/products/JosieExperiments_30_1200x.png?v=1690825903" alt="Reausable Beeswax Wraps" loading="lazy">
+              
+              <span class="badge badge-discount">-27%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Kitchen</p>
+              <h3 class="product-name">Reausable Beeswax Wraps</h3>
+              <p class="product-desc">Natural alternative to plastic wrap. Made with organic cotton, beeswax, jojoba oil, and tree resin.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(156)</span></div>
+              <p class="product-price"><span class="price-now">$21.99</span> <span class="price-old">$15.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://i.pinimg.com/736x/9a/98/3e/9a983ee40b4db7a455aa170bda31e144.jpg" alt="Bamboo Cutlery Set" loading="lazy">
+              
+              <span class="badge badge-discount">-24%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Bamboo Products</p>
+              <h3 class="product-name">Bamboo Cutlery Set</h3>
+              <p class="product-desc">Portable bamboo utensil set includes fork, knife, spoon, chopsticks, and cleaning brush in a cotton pouch.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(312)</span></div>
+              <p class="product-price"><span class="price-now">$316.99</span> <span class="price-old">$26.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://i.pinimg.com/736x/79/f9/bb/79f9bb7b15b172bbc667685c7d4004b6.jpg" alt="Natural Loofah Sponges" loading="lazy">
+              
+              <span class="badge badge-discount">-33%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Kitchen</p>
+              <h3 class="product-name">Natural Loofah Sponges</h3>
+              <p class="product-desc">Set of 5 natural loofah sponges for kitchen and bathroom. Biodegradable and plastic-free.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(98)</span></div>
+              <p class="product-price"><span class="price-now">$14.99</span> <span class="price-old">$9.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://jungleculture.eco/cdn/shop/products/LOWReusableMetalDrinkingStrawsBlue_300x.jpg?v=1636995548" alt="Stainless Steel Straws Set" loading="lazy">
+              
+              <span class="badge badge-discount">-25%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Kitchen</p>
+              <h3 class="product-name">Stainless Steel Straws Set</h3>
+              <p class="product-desc">Set of 8 reusable metal straws with 2 cleaning brushes and a cotton carrying pouch.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(267)</span></div>
+              <p class="product-price"><span class="price-now">$15.99</span> <span class="price-old">$11.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://i.pinimg.com/736x/96/12/b5/9612b582941721d699c201024f39a9a1.jpg" alt="Bamboo Toothbrush Pack" loading="lazy">
+              
+              <span class="badge badge-discount">-31%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Personal Care</p>
+              <h3 class="product-name">Bamboo Toothbrush Pack</h3>
+              <p class="product-desc">Pack of 4 biodegradable bamboo toothbrushes with charcoal-infused soft bristles.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(421)</span></div>
+              <p class="product-price"><span class="price-now">$12.99</span> <span class="price-old">$8.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://memotherearthbrand.com/cdn/shop/products/HalfMeshBag_460x.jpg?v=1690832959" alt="Organic Cotton Produce Bags" loading="lazy">
+              
+              <span class="badge badge-discount">-25%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Bags</p>
+              <h3 class="product-name">Organic Cotton Produce Bags</h3>
+              <p class="product-desc">Set of 9 reusable mesh produce bags in various sizes. Perfect for zero-waste shopping.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(145)</span></div>
+              <p class="product-price"><span class="price-now">$19.99</span> <span class="price-old">$14.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://www.coconutbowls.com/cdn/shop/files/onedown_health_cocopineapple_and_passionfruit_smoothie1.jpg?v=1722044731&width=5000" alt="Coconut Bowl Set" loading="lazy">
+              
+              <span class="badge badge-discount">-24%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Kitchen</p>
+              <h3 class="product-name">Coconut Bowl Set</h3>
+              <p class="product-desc">Set of 2 handcrafted coconut shell bowls with wooden spoons. Each piece is unique.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(178)</span></div>
+              <p class="product-price"><span class="price-now">$32.99</span> <span class="price-old">$24.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://okoliving.com/cdn/shop/products/new-RAINBOWfinal_website_800x1280.jpg?v=1762439473" alt="Eco-Friendly Yoga Mat" loading="lazy">
+              
+              <span class="badge badge-discount">-25%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Outdoor</p>
+              <h3 class="product-name">Eco-Friendly Yoga Mat</h3>
+              <p class="product-desc">Natural rubber yoga mat with cork surface. Non-slip, antimicrobial, and fully biodegradable</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(203)</span></div>
+              <p class="product-price"><span class="price-now">$79.99</span> <span class="price-old">$59.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://i.pinimg.com/736x/2d/f3/c3/2df3c32229521ebaee703fe176869ff6.jpg" alt="Solar-Powered Lantern" loading="lazy">
+              
+              <span class="badge badge-discount">-22%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Outdoor</p>
+              <h3 class="product-name">Solar-Powered Lantern</h3>
+              <p class="product-desc">Rechargeable camping lantern with solar panel. Water-resistant and perfect for outdoor</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(87)</span></div>
+              <p class="product-price"><span class="price-now">$44.99</span> <span class="price-old">$34.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          <li class="product-card card">
+            <div class="product-media">
+              <img src="https://i.pinimg.com/736x/8e/ef/10/8eef10324f20ab04f0bb7d91ec75528a.jpg" alt="Organic Shampoo Bar" loading="lazy">
+              
+              <span class="badge badge-discount">-22%</span>
+            </div>
+            <div class="product-body">
+              <p class="product-category">Personal Care</p>
+              <h3 class="product-name">Organic Shampoo Bar</h3>
+              <p class="product-desc">Plastic-free solid shampoo bar with lavender and rosemary.</p>
+              <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(298)</span></div>
+              <p class="product-price"><span class="price-now">$17.99</span> <span class="price-old">$13.99</span></p>
+              <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+            </div>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <img class="logo-icon" src="../images/logo.png" alt="" width="50" height="50">
+          <span class="logo-text">EcoMart</span>
+        </div>
+        <p>Your one-stop destination for sustainable living products. Making eco-friendly choices accessible to everyone.</p>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <div class="contact-item">
+          <span>123 Green Street, Eco City, EC 12345</span>
+        </div>
+        <div class="contact-item">
+          <a href="tel:+9779812345678">+977 981 234 5678</a>
+        </div>
+        <div class="contact-item">
+          <a href="mailto:hello@ecomart.com">hello@ecomart.com</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 EcoMart. All rights reserved. Built with care for the planet.</p>
+  </footer>
+
+</body>
+</html>

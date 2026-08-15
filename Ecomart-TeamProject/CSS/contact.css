@@ -1,0 +1,23 @@
+/* contact.css — Contact page only. Shared rules live in common.css */
+
+.contact-section { padding-block: var(--space-xl); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+.contact-form-panel { padding: var(--space-lg); }
+.contact-form-panel h2 { margin-bottom: var(--space-md); }
+
+.contact-info-panel { background-color: var(--color-bg-soft); padding: var(--space-lg); border-radius: var(--radius-lg); }
+.contact-info-panel h2 { margin-bottom: var(--space-md); }
+.info-item { margin-bottom: var(--space-md); }
+.info-item h3 { font-size: 1rem; margin-bottom: 4px; }
+.info-item p { color: var(--color-text-muted); }
+.info-item a { color: var(--color-primary); text-decoration: none; }
+.info-item a:hover { text-decoration: underline; }
+
+@media (max-width: 800px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
