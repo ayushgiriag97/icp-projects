@@ -119,15 +119,6 @@ class Medicine:
 
     # ---------- display ----------
     def __str__(self):
-        rx = "Rx" if self.prescription_required else "  "
-        expired_tag = " [EXPIRED]" if self.is_expired() else ""
-        return (f"{self.name:<18} {self.brand:<12} {self.qty:>6} tabs   "
-                f"Rs.{self.rate_tablet:<7.2f} Rs.{self.rate_strip:<7.2f} "
-                f"Batch:{self.batch_no:<8} Exp:{self.expiry_date.strftime(DATE_FORMAT)} {rx}{expired_tag}")
-
-    def __repr__(self):
-        return (f"Medicine(name={self.name!r}, brand={self.brand!r}, qty={self.qty}, "
-                f"rate_tablet={self.rate_tablet}, rate_strip={self.rate_strip}, "
-                f"tabs_per_strip={self.tabs_per_strip}, batch_no={self.batch_no!r}, "
-                f"expiry_date={self.expiry_date}, cost_price={self.cost_price}, "
-                f"prescription_required={self.prescription_required})")
+        return (self.name + "  |  " + self.brand +
+                "  |  " + str(self.qty) + " tabs  |  Rs." +
+                str(self.rate_tablet) + "  |  Rs." + str(self.rate_strip))

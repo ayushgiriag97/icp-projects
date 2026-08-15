@@ -112,83 +112,27 @@ class InvoiceGenerator:
         if not isinstance(party, str) or not party.strip():
             raise InvoiceError("Party name must be a non-empty string.")
 
-        file_exists = os.path.exists(self.transactions_file)
-        try:
-            with open(self.transactions_file, "a", encoding="utf-8", newline="") as f:
-                writer = csv.writer(f)
-                if not file_exists:
-                    writer.writerow(TRANSACTION_FIELDS)
-                writer.writerow([
-                    datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    txn_type, party.strip(), medicine.name, medicine.brand, medicine.batch_no,
-                    unit, qty, tabs_count, rate, discount, round(subtotal, 2),
-                    medicine.cost_price, rx_ref,
-                ])
-        except OSError as e:
-            print(f"[Warning] Could not record transaction: {e}")
+        if not isinstance(note_lines, list):
+            raise ValueError("Note lines must be a list.")
 
-    def _read_transactions(self):
-        if not os.path.exists(self.transactions_file):
-            return []
-        try:
-            with open(self.transactions_file, "r", encoding="utf-8", newline="") as f:
-                return list(csv.DictReader(f))
-        except OSError as e:
-            print(f"[Warning] Could not read transaction history: {e}")
-            return []
+        if not (isinstance(total, int) or isinstance(total, float)) or total < 0:
+            raise ValueError("Total must be a non-negative number.")
 
-    @staticmethod
-    def _within_range(timestamp_str, start_date, end_date):
-        ts = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").date()
-        if start_date and ts < start_date:
-            return False
-        if end_date and ts > end_date:
-            return False
-        return True
+        content = ""
+        content += "============================\n"
+        content += "   MEDSTORE PVT. LTD.\n"
+        content += "   RESTOCK NOTE\n"
+        content += "============================\n"
+        content += "Supplier : " + supplier.strip() + "\n"
+        content += "----------------------------\n"
 
-    def sales_report(self, start_date=None, end_date=None):
-        """Aggregate totals for SALE transactions within an optional date range."""
-        rows = self._read_transactions()
-        total_sales = total_discount = total_profit = 0.0
-        count = 0
-        for row in rows:
-            if row.get("type") != "SALE":
-                continue
-            if not self._within_range(row["timestamp"], start_date, end_date):
-                continue
-            subtotal = float(row["subtotal"])
-            discount = float(row["discount"])
-            cost = float(row["cost_price"]) * float(row["tabs_count"])
-            total_sales += subtotal
-            total_discount += discount
-            total_profit += subtotal - cost
-            count += 1
-        return {
-            "transactions": count,
-            "total_sales": round(total_sales, 2),
-            "total_discount": round(total_discount, 2),
-            "total_profit": round(total_profit, 2),
-        }
+        for line in note_lines:
+            if not isinstance(line, str):
+                raise ValueError("Note line must be a string.")
+            content += line + "\n"
 
-    def top_selling(self, n=5, start_date=None, end_date=None):
-        """Return up to n (medicine, brand) -> tablets-sold pairs, most sold first."""
-        rows = self._read_transactions()
-        totals = {}
-        for row in rows:
-            if row.get("type") != "SALE":
-                continue
-            if not self._within_range(row["timestamp"], start_date, end_date):
-                continue
-            key = (row["medicine"], row["brand"])
-            totals[key] = totals.get(key, 0) + int(row["tabs_count"])
-        ranked = sorted(totals.items(), key=lambda kv: kv[1], reverse=True)
-        return ranked[:n]
+        content += "----------------------------\n"
+        content += "TOTAL : Rs." + str(round(total, 2)) + "\n"
+        content += "============================\n"
 
-    def party_history(self, party_name, txn_type=None):
-        """All transaction rows for a given customer/supplier name (case-insensitive)."""
-        if not isinstance(party_name, str) or not party_name.strip():
-            raise InvoiceError("Party name must be a non-empty string.")
-        rows = self._read_transactions()
-        target = party_name.strip().lower()
-        return [r for r in rows if r.get("party", "").strip().lower() == target
-                and (txn_type is None or r.get("type") == txn_type)]
+        return content
