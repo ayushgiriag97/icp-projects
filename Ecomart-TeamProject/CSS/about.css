@@ -40,3 +40,62 @@
 @media (max-width: 800px) {
   .story-grid { grid-template-columns: 1fr; }
 }
+
+/* Hero consistency */
+.page-hero {
+  background-color: var(--color-bg-tint);   /* soft green tint */
+  text-align: center;
+}
+.page-hero h1 {
+  color: var(--color-primary);
+}
+.page-hero p {
+  color: var(--color-text-muted);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Story section polish */
+.story-section {
+  background-color: var(--color-bg-soft);
+}
+.story-content h2 {
+  color: var(--color-primary);
+}
+.story-content p {
+  line-height: 1.8;
+}
+
+/* Value cards */
+.value-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.value-card h3 {
+  margin-bottom: 8px;
+  color: var(--color-primary);
+}
+
+/* Team section polish */
+.team-section {
+  background-color: var(--color-bg-alt);    /* softer tint */
+}
+.team-card {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.team-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
