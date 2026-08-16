@@ -31,3 +31,60 @@
 @media (max-width: 700px) {
   .comparison-row { grid-template-columns: 1fr; }
 }
+
+/* Hero consistency */
+.research-hero {
+  background-color: var(--color-bg-tint);   /* soft green tint */
+  text-align: center;
+}
+.research-hero h1 {
+  color: var(--color-primary);
+}
+.research-hero p {
+  color: var(--color-text-muted);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Intro section polish */
+.intro-section {
+  padding: var(--space-lg);
+  background-color: var(--color-bg-alt);    /* unify with product filters */
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+/* Comparison cards */
+.comparison-card {
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.comparison-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* Columns */
+.reference-column {
+  background-color: #fff5f0; /* keep warm tone */
+}
+.our-column {
+  background-color: var(--color-bg-soft);  /* softer beige tint */
+}
+.column {
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+/* Reference links */
+.reference-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.reference-link:hover {
+  text-decoration: underline;
+  color: var(--color-primary-dark);
+}
