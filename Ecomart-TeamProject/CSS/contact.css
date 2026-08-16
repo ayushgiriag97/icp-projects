@@ -21,3 +21,57 @@
 @media (max-width: 800px) {
   .contact-grid { grid-template-columns: 1fr; }
 }
+
+/* Hero consistency */
+.page-hero {
+  background-color: var(--color-bg-tint);   /* soft green tint */
+  text-align: center;
+}
+.page-hero h1 {
+  color: var(--color-primary);
+}
+.page-hero p {
+  color: var(--color-text-muted);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Contact form panel polish */
+.contact-form-panel {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contact-form-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.contact-form-panel h2 {
+  color: var(--color-primary);
+}
+
+/* Contact info panel polish */
+.contact-info-panel {
+  background-color: var(--color-bg-alt);    /* softer tint */
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+.contact-info-panel h2 {
+  color: var(--color-primary);
+}
+.info-item h3 {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+.info-item p {
+  line-height: 1.6;
+}
+
+/* Buttons consistency */
+button.btn-primary {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+}
