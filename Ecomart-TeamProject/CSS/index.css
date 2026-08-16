@@ -1,76 +1,206 @@
-/* index.css — Home page only. Shared rules live in common.css */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoMart - Sustainable Living Made Simple</title>
+  <link rel="stylesheet" href="../CSS/common.css">
+  <link rel="stylesheet" href="../CSS/index.css">
+  <script src="scripts/product-slider.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img class="logo-icon" src="../images/logo.png" alt="" width="50" height="50">
+      <span class="logo-text">EcoMart</span>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="product.html">Products</a>
+      <a href="blog.html">Blog</a>
+      <a href="research.html">Research</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="cart" href="#" aria-label="View cart, 3 items">
+      <span class="cart-icon" aria-hidden="true">
+        <img src="../images/cart.png" alt="" width="22" height="22">
+      </span>
+      <span class="cart-badge">3</span>
+    </a>
+  </header>
 
-.hero {
-  text-align: center;
-  padding-block: 100px 80px;
-  background-color: var(--color-bg-soft);
-}
-.hero-inner { max-width: 700px; }
-.tagline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--color-bg-alt);
-  color: var(--color-primary);
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: var(--space-md);
-}
-.hero h1 { font-size: 3rem; margin-bottom: var(--space-sm); }
-.hero .highlight { color: var(--color-primary); }
-.hero .description { color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: var(--space-lg); }
-.cta-buttons { display: flex; justify-content: center; gap: var(--space-sm); flex-wrap: wrap; }
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="tagline"><span aria-hidden="true">🌿</span> Sustainable Living Made Simple</p>
+        <h1>Shop Sustainably,<br><span class="highlight">Live Responsibly</span></h1>
+        <p class="description">Discover our curated collection of eco-friendly products designed to help you reduce waste and embrace a sustainable lifestyle.</p>
+        <div class="cta-buttons">
+          <a class="btn btn-primary" href="product.html">Shop Now <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-secondary" href="about.html">Learn More</a>
+        </div>
+      </div>
+    </section>
 
-.features-section { padding-block: var(--space-xl); }
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-md);
-}
-.feature-card { text-align: center; padding: var(--space-md); }
-.feature-card .icon-circle {
-  width: 64px; height: 64px;
-  margin: 0 auto var(--space-sm);
-  background-color: var(--color-bg-alt);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
-.feature-card h3 { margin-bottom: 8px; }
-.feature-card p { color: var(--color-text-muted); font-size: 14px; }
+    <section class="features-section">
+      <div class="container features-grid">
+        <div class="feature-card">
+          <div class="icon-circle"><img src="../images/leaf.png" alt="" width="32" height="32"></div>
+          <h3>100% Eco-Friendly</h3>
+          <p>All products are sustainably sourced and environmentally conscious.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle"><img src="../images/recycle.png" alt="" width="32" height="32"></div>
+          <h3>Zero Waste Packaging</h3>
+          <p>We ship in plastic-free, recyclable, and compostable materials.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle"><img src="../images/carbon.png" alt="" width="32" height="32"></div>
+          <h3>Carbon Neutral</h3>
+          <p>We offset 100% of our shipping and operational emissions.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle"><img src="../images/shipping.png" alt="" width="32" height="32"></div>
+          <h3>Free Green Shipping</h3>
+          <p>Free eco-friendly shipping on all orders over $50.</p>
+        </div>
+      </div>
+    </section>
 
-.featured-products-section { padding-block: var(--space-xl); background-color: var(--color-bg-soft); }
-.featured-products-section h2 { text-align: center; font-size: 2rem; }
-.featured-products-section > .container > p {
-  text-align: center; color: var(--color-text-muted); max-width: 560px; margin: var(--space-xs) auto var(--space-md);
-}
+    <section class="featured-products-section">
+      <div class="container">
+        <h2>Featured Products</h2>
+        <p>Discover our best-selling sustainable products loved by thousands of eco-conscious customers.</p>
 
-.slider-controls { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: var(--space-sm); }
-.slider-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-white);
-  font-size: 18px;
-}
-.slider-btn:hover { background-color: var(--color-primary); color: var(--color-white); }
+        <div class="slider-controls">
+          <button type="button" class="slider-btn prev-btn" data-dir="-1" aria-label="Previous products">&larr;</button>
+          <button type="button" class="slider-btn next-btn" data-dir="1" aria-label="Next products">&rarr;</button>
+        </div>
 
-.products-slider { overflow: hidden; }
-.products-track {
-  display: flex;
-  gap: 24px;
-  transition: transform 0.35s ease;
-}
-.product-card { flex: 0 0 280px; }
-.product-media { position: relative; aspect-ratio: 4 / 3; }
-.product-media img { width: 100%; height: 100%; object-fit: cover; }
-.product-body { padding: var(--space-sm); }
-.product-category { font-size: 12px; color: var(--color-text-soft); text-transform: uppercase; letter-spacing: 0.05em; }
-.product-name { font-size: 1.05rem; margin: 4px 0 6px; }
-.product-desc { font-size: 14px; color: var(--color-text-muted); margin-bottom: 10px; }
-.product-price { margin: 10px 0; }
-.price-now { font-size: 1.2rem; font-weight: 700; color: var(--color-primary); }
-.price-old { font-size: 14px; color: var(--color-text-soft); text-decoration: line-through; margin-left: 8px; }
+        <div class="products-slider">
+          <ul class="products-track" id="productsTrack">
+            <li class="product-card card">
+              <div class="product-media">
+                <img src="https://i.pinimg.com/736x/71/fa/80/71fa805b1569fff9694ad03d545fb02e.jpg" alt="Bamboo Water Bottle" loading="lazy " style="object-fit: contain; width: 100%; height: 100%; background-color: #fff;">
+                <span class="badge badge-best">Best Seller</span>
+                <span class="badge badge-discount">-25%</span>
+              </div>
+              <div class="product-body">
+                <p class="product-category">Bamboo Products</p>
+                <h3 class="product-name">Bamboo Water Bottle</h3>
+                <p class="product-desc">Stay hydrated sustainably with our insulated bamboo water bottle.</p>
+                <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(234)</span></div>
+                <p class="product-price"><span class="price-now">$29.99</span> <span class="price-old">$39.99</span></p>
+                <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+              </div>
+            </li>
+            <li class="product-card card">
+              <div class="product-media">
+                <img src="https://totebagfactory.com/cdn/shop/files/canvas-tote-bags-collection.jpg?v=1730234916&width=345" alt="Organic Cotton Tote Bag" loading="lazy">
+                <span class="badge badge-best">Eco Choice</span>
+                <span class="badge badge-discount">-20%</span>
+              </div>
+              <div class="product-body">
+                <p class="product-category">Bags</p>
+                <h3 class="product-name">Organic Cotton Tote Bag</h3>
+                <p class="product-desc">Durable, stylish, and 100% organic cotton.</p>
+                <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(189)</span></div>
+                <p class="product-price"><span class="price-now">$19.99</span> <span class="price-old">$24.99</span></p>
+                <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+              </div>
+            </li>
+            <li class="product-card card">
+              <div class="product-media">
+                <img src="https://www.beeswrap.com/cdn/shop/products/JosieExperiments_30_1200x.png?v=1690825903" alt="Reusable Beeswax Wraps" loading="lazy">
+                
+                <span class="badge badge-discount">-27%</span>
+              </div>
+              <div class="product-body">
+                <p class="product-category">Kitchen</p>
+                <h3 class="product-name">Reusable Beeswax Wraps</h3>
+                <p class="product-desc">Natural alternative to plastic wrap.</p>
+                <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(156)</span></div>
+                <p class="product-price"><span class="price-now">$15.99</span> <span class="price-old">$21.99</span></p>
+                <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+              </div>
+            </li>
+            <li class="product-card card">
+              <div class="product-media">
+                <img src="https://i.pinimg.com/736x/9a/98/3e/9a983ee40b4db7a455aa170bda31e144.jpg" alt="Bamboo Cutlery Set" loading="lazy">
+                
+                <span class="badge badge-discount">-24%</span>
+              </div>
+              <div class="product-body">
+                <p class="product-category">Bamboo Products</p>
+                <h3 class="product-name">Bamboo Cutlery Set</h3>
+                <p class="product-desc">Portable bamboo utensil set with cotton pouch.</p>
+                <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(312)</span></div>
+                <p class="product-price"><span class="price-now">$19.99</span> <span class="price-old">$26.99</span></p>
+                <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+              </div>
+            </li>
+            <li class="product-card card">
+              <div class="product-media">
+                <img src="https://i.pinimg.com/736x/79/f9/bb/79f9bb7b15b172bbc667685c7d4004b6.jpg" alt="Natural Loofah Sponges" loading="lazy">
+                
+                <span class="badge badge-discount">-33%</span>
+              </div>
+              <div class="product-body">
+                <p class="product-category">Kitchen</p>
+                <h3 class="product-name">Natural Loofah Sponges</h3>
+                <p class="product-desc">Set of 5 biodegradable sponges.</p>
+                <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(98)</span></div>
+                <p class="product-price"><span class="price-now">$9.99</span> <span class="price-old">$14.99</span></p>
+                <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+              </div>
+            </li>
+            <li class="product-card card">
+              <div class="product-media">
+                <img src="https://jungleculture.eco/cdn/shop/products/LOWReusableMetalDrinkingStrawsBlue_300x.jpg?v=1636995548" alt="Stainless Steel Straws Set" loading="lazy">
+                
+                <span class="badge badge-discount">-25%</span>
+              </div>
+              <div class="product-body">
+                <p class="product-category">Kitchen</p>
+                <h3 class="product-name">Stainless Steel Straws Set</h3>
+                <p class="product-desc">Set of 8 reusable metal straws.</p>
+                <div class="rating"><span class="rating-stars" aria-hidden="true">★★★★☆</span><span class="visually-hidden">4 out of 5 stars</span><span class="rating-count">(267)</span></div>
+                <p class="product-price"><span class="price-now">$11.99</span> <span class="price-old">$15.99</span></p>
+                <button type="button" class="btn btn-primary btn-block">Add to Cart</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Product slides"></div>
+      </div>
+    </section>
+  </main>
 
-.slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: var(--space-md); }
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <img class="logo-icon" src="../images/logo.png" alt="" width="50" height="50">
+          <span class="logo-text">EcoMart</span>
+        </div>
+        <p>Your one-stop destination for sustainable living products. Making eco-friendly choices accessible to everyone.</p>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <div class="contact-item">
+          <span>123 Green Street, Eco City, EC 12345</span>
+        </div>
+        <div class="contact-item">
+          <a href="tel:+9779812345678">+977 981 234 5678</a>
+        </div>
+        <div class="contact-item">
+          <a href="mailto:hello@ecomart.com">hello@ecomart.com</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 EcoMart. All rights reserved. Built with care for the planet.</p>
+  </footer>
+
+</body>
+</html>
